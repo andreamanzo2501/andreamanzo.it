@@ -1,0 +1,8 @@
+/* Font (inclusi nel sito, nessuna richiesta a servizi esterni) */
+@font-face{font-family:'Inter Tight';font-style:normal;font-display:swap;font-weight:100 900;src:url(../fonts/InterTight-Variable.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:100 800;src:url(../fonts/JetBrainsMono-Variable.woff2) format('woff2')}
+
+/* Token del design system Andrea Manzo: tema scuro di default, chiaro con data-theme="light" */
+:root,[data-theme="dark"]{--paper:#0E0E0E;--surface:#111111;--line:#141414;--line-strong:#606060;--text:#B0B0B0;--muted:#808080;--ink:#FFFFFF;--ink-hover:#F0F0F0;--on-ink:#0A0A0A;}
+[data-theme="light"]{--paper:#FFFFFF;--surface:#F5F5F5;--line:#EFEFEF;--line-strong:#878787;--text:#424242;--muted:#6E6E6E;--ink:#1D1D1D;--ink-hover:#333333;--on-ink:#FFFFFF;}
+:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;--radius-0:0px;--content-max:760px;--margin-min:16px;--margin-max:96px;--border-width:1px;--font-sans:"Inter Tight",system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace}

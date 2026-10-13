@@ -1,0 +1,17 @@
+# Diritti di text and data mining riservati (art. 70-quater L. 633/1941): vedi Note legali.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://andreamanzo.it/sitemap.xml
