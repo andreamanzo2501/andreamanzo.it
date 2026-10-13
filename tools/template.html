@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+{{head}}
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/InterTight-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<div class="am am-shell" id="app">
+ <div class="am-col"><header class="am-header"><nav class="am-path" id="path" aria-label="Percorso">{{path}}</nav></header></div>
+ <main class="am-main" id="main"><div class="am-col" id="view">{{view}}</div></main>
+ <div class="am-col"><footer class="am-footer"><span class="am-footer__links"><span>© 2026 Andrea Manzo</span><a href="/portfolio/?f=tutti">Portfolio</a><a href="/note-legali/">Note legali</a></span><button class="am-theme am-theme--foot only-m-block" onclick="AndreaManzo.toggleTheme()"></button></footer></div><button class="am-theme am-theme--corner" onclick="AndreaManzo.toggleTheme()"></button>
+</div>
+
+
+<div class="am am-sheet" id="cv" role="dialog" aria-modal="true" aria-labelledby="cvTitle"><div class="am-sheet__panel"><div class="am-sheet__head"><span class="am-label" id="cvTitle">Scheda contatto</span><button class="am-menu-btn" data-sheet-close aria-label="Chiudi la scheda"><svg class="am-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="am-sheet__body" id="cvBody">{{cv}}</div><div class="am-sheet__foot"><a class="am-link" href="#" download>Scarica il CV <svg class="am-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg></a><a class="am-btn am-btn--primary am-btn--s" href="mailto:ciao@andreamanzo.it">Scrivimi <svg class="am-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18L17 7M9 6h9v9"/></svg></a></div></div></div>
+<div class="am am-gallery am-shell" id="gallery" role="dialog" aria-label="Galleria">
+ <div class="am-col"><header class="am-header"><span class="am-label" id="galTitle"></span><button class="am-menu-btn am-gallery__close" aria-label="Chiudi la galleria"><svg class="am-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header></div>
+ <div class="am-col am-gallery__stage"><button class="am-pager__btn" data-prev aria-label="Immagine precedente"><svg class="am-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H6M11 6l-6 6 6 6"/></svg></button><div class="am-gallery__frame"><img class="am-gallery__img" alt=""></div><button class="am-pager__btn" data-next aria-label="Immagine successiva"><svg class="am-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6"/></svg></button></div>
+ <div class="am-col"><div class="am-gallery__foot" id="galFoot"><span class="am-gallery__caption am-caption"></span></div></div>
+</div>
+
+<script src="/assets/js/andreamanzo.js"></script>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

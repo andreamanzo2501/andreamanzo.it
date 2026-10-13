@@ -6,12 +6,19 @@ Sito statico in HTML, CSS e JavaScript, senza dipendenze, cookie di terze parti 
 ## Struttura
 
 ```
-index.html            pagina unica: il sito è un'app a schermata singola
-404.html              indirizzi inesistenti → pagina 404 del sito
+index.html            Home                                  ┐
+portfolio/            Portfolio e una cartella per progetto │ pagine generate da tools/build.js:
+note-legali/          Note legali                           │ non modificarle a mano
+404.html              indirizzi inesistenti                 │
+sitemap.xml           elenco delle pagine indicizzabili     ┘
 CNAME                 dominio personalizzato (andreamanzo.it)
 .nojekyll             GitHub Pages pubblica i file così come sono
 robots.txt            indicizzazione; blocco dei crawler per l'addestramento IA (vedi Note legali)
-sitemap.xml
+tools/
+  build.js            genera le pagine statiche e la sitemap
+  template.html       struttura comune a tutte le pagine (testata, piè di pagina, scheda contatto, galleria)
+  og.html             sorgente dell'immagine di anteprima per i social (assets/img/og.png)
+  serve.js            anteprima locale del sito
 assets/
   css/tokens.css      font e token del design system (colori dei due temi, spazi, layout)
   css/components.css  componenti del design system
@@ -19,10 +26,22 @@ assets/
   js/andreamanzo.js   icone e comportamenti (tema, galleria, scheda contatto, copia email)
   js/app.js           pagine, testi, progetti e navigazione
   fonts/              Inter Tight e JetBrains Mono (licenza SIL OFL)
-  img/                immagine profilo e favicon
+  img/                immagine profilo, favicon, icona Apple e anteprima social
 ```
 
-Le pagine sono gestite dentro `index.html` con indirizzi del tipo `/#/portfolio`, `/#/portfolio/progetto-01`, `/#/privacy` (Note legali).
+Ogni pagina ha un indirizzo e un file HTML propri (`/`, `/portfolio/`, `/portfolio/progetto-01/`, `/note-legali/`), con titolo, descrizione, dati strutturati e contenuto già scritti nel file: motori di ricerca e anteprime social li leggono senza eseguire JavaScript. Nel browser la navigazione resta istantanea, senza ricaricare la pagina. I vecchi indirizzi con `#` (es. `/#/portfolio`) vengono portati a quelli nuovi.
+
+## Generare le pagine
+
+Dopo ogni modifica a testi, progetti o `tools/template.html` (serve [Node.js](https://nodejs.org), nessuna dipendenza):
+
+```
+node tools/build.js     rigenera le pagine e la sitemap
+node tools/serve.js     anteprima su http://localhost:4173
+```
+
+L'immagine di anteprima social si rigenera da `tools/og.html` con uno screenshot 1200×630, ad esempio con Edge:
+`msedge --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=assets/img/og.png tools/og.html`
 
 ## Pubblicazione su GitHub Pages
 
@@ -39,7 +58,9 @@ Ogni modifica caricata sul branch `main` viene pubblicata in automatico in circa
 
 ## Modificare il sito
 
-- **Testi e progetti**: `assets/js/app.js`. I progetti sono nell'elenco `PROJECTS`; i testi della Home hanno una versione desktop e una mobile nella funzione `dm('desktop', 'mobile')`.
+- **Testi e progetti**: `assets/js/app.js`, poi `node tools/build.js`. I progetti sono nell'elenco `PROJECTS`; i testi della Home hanno una versione desktop e una mobile nella funzione `dm('desktop', 'mobile')`.
+- **Progetti e motori di ricerca**: ogni progetto può avere `desc` (descrizione nei risultati di ricerca), `cliente`, `storia`, `processo`, `servizi` e `imgs` (`[{src, alt, cap}]`: la prima immagine è la copertina e l'anteprima social; `alt` è il testo alternativo). Un progetto con `bozza:true` è un segnaposto: la pagina non viene indicizzata e resta fuori dalla sitemap.
+- **Titoli e descrizioni delle pagine**: campi `title` e `desc` di ogni pagina in `assets/js/app.js`.
 - **Note legali**: nella funzione `privacy()` di `assets/js/app.js`. Aggiorna la data e aggiungi la Partita IVA appena attribuita.
 - **Colori e spazi**: `assets/css/tokens.css` (valori del design system).
 - **Immagini dei progetti**: aggiungile in `assets/img/` in formato 4:3 o 3:4 e indica testo alternativo e didascalia.
